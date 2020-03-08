@@ -1,7 +1,6 @@
 export class Department {
   id?: number;
-  street?: string;
-  streetNumber?: string;
-  city?: string;
-  country?: string;
+  long_name?: string;
+  short_name?: string;
+  description?: string;
 }
