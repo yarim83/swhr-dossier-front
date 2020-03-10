@@ -1,6 +1,5 @@
 <h2 class="text-info">Kreator pracownika / funkcjonariusza</h2>
 <hr/>
-<div class="container">
   <div [hidden]="submitted">
     <form (ngSubmit)="onSubmit(employeeForm)" #employeeForm="ngForm">
 
@@ -41,11 +40,16 @@
                  class="form-control">
         </div>
       </div>
+
+      <button type="submit" [disabled]="!employeeForm.valid" class="btn btn-success">Zapisz</button>
+
+      <div [hidden]="!submitted">
+        <h4>You submitted successfully!</h4>
+<!--        <button class="btn btn-success" (click)="newEmployee()">Add</button>-->
+      </div>
     </form>
   </div>
 
-  <button type="submit" [disabled]="!employeeForm.valid" class="btn btn-success">Zapisz</button>
-</div>
 
 <div [hidden]="!submitted">
   <h4>You submitted successfully!</h4>

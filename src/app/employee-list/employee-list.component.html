@@ -5,38 +5,52 @@
   <div class="panel-body">
     <table class="table">
       <thead class="thead-dark">
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Firstname</th>
-          <th scope="col">Lastname</th>
-          <th scope="col">Email</th>
-          <th scope="col">Actions</th>
-        </tr>
+      <tr>
+        <th scope="col">Firstname</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Email</th>
+        <th scope="col">Actions</th>
+      </tr>
       </thead>
 
       <tbody>
-        <tr *ngFor="let employee of employees$">
-          <td>{{employee.id}}</td>
-          <td>{{employee.firstName}}</td>
-          <td>{{employee.lastname}}</td>
-          <td>{{employee.email}}</td>
-          <td><button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>
-              <button (click)="employeeDetails(employee.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
-          </td>
-        </tr>
+      <tr *ngFor="let employee of employees$">
+        <td>{{employee.firstName}}</td>
+        <td>{{employee.lastname}}</td>
+        <td>{{employee.email}}</td>
+        <td>
+          <button (click)="employeeDetails(employee.id)" class="btn btn-outline-primary" style="margin-left: 10px">
+            Szczegóły
+          </button>
+          <button (click)="updateEmployee(employee.id)" class="btn btn-outline-warning" style="margin-left: 10px">
+            Aktualizuj
+          </button>
+
+          <button class="btn btn-outline-danger" style="margin-left: 10px"
+                  mwlConfirmationPopover
+                  [popoverTitle]="'Potwierdzenie usunięcia'"
+                  [popoverMessage]="'Czy na pewno?'"
+                  placement="left"
+                  (confirm)="deleteEmployee(employee.id) && reloadData2()"
+                  (cancel)="reloadData2()">
+            Skasuj
+          </button>
+
+        </td>
+      </tr>
       </tbody>
     </table>
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-end">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-        </li>
+        <!--        <li class="page-item disabled">-->
+        <!--          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Poprzedni</a>-->
+        <!--        </li>-->
         <li class="page-item" *ngFor="let page of pages; let i = index">
-          <a class="page-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active': i==page}">{{i}}</a>
+          <a class="page-link" href="" (click)="setPage(i,$event)" [ngClass]="{'active': i==page}">{{i + 1}}</a>
         </li>
-        <li class="page-item">
-          <a class="page-link" href="" >Next</a>
-        </li>
+        <!--        <li class="page-item">-->
+        <!--          <a class="page-link" href="" tabindex="+1">Następny</a>-->
+        <!--        </li>-->
       </ul>
     </nav>
 
