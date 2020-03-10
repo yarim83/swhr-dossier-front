@@ -1,0 +1,55 @@
+<h2 class="text-info">Szczegółowe dane pracownika</h2>
+<hr/>
+
+<div class="container" *ngIf="employee">
+  <div class="row">
+    <div class="col-sm">
+      <img src="..." class="rounded" alt="...">
+    </div>
+    <div class="col-sm">
+      <h5>Dane osobowe:</h5>
+      <div>
+        <label><b>Imię: </b></label> {{employee.firstName}}
+      </div>
+      <div>
+        <label><b>Nazwisko: </b></label> {{employee.lastname}}
+      </div>
+      <div>
+        <label><b>Email: </b></label> {{employee.email}}
+      </div>
+      <div>
+        <label><b>PESEL: </b></label> {{employee.pesel}}
+      </div>
+      <div>
+        <label><b>Płeć: </b></label> {{employee.sex}}
+      </div>
+      <div>
+        <label><b>Data urodzenia: </b></label> {{employee.birth_date | date: 'dd-mM-yyyy'}}
+      </div>
+    </div>
+    <div class="col-sm">
+      <h5>Adres zamieszkania</h5>
+      <div>
+        <div>
+          <label><b>Ulica: </b></label> {{employee.address.street}}
+          , <label><b>Numer: </b></label> {{employee.address.street_number}}
+        </div>
+        <div>
+          <label><b>Miasto: </b></label> {{employee.address.city}}
+        </div>
+        <div>
+          <label><b>Kraj pochodzenia: </b></label> {{employee.address.country}}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <h5>Dane kadrowe</h5>
+      <div>
+        <label><b>Dział: </b></label> {{employee.department.long_name}}
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Wróć</button><br>
