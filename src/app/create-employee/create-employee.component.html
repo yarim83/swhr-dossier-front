@@ -1,57 +1,64 @@
 <h2 class="text-info">Kreator pracownika / funkcjonariusza</h2>
 <hr/>
-  <div [hidden]="submitted">
-    <form (ngSubmit)="onSubmit(employeeForm)" #employeeForm="ngForm">
+  <div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
       <div>
         <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" class="form-control" id="firstName" required [(ngModel)]="employee.firstName"
-                 name="firstName">
+          <label>Imię</label>
+          <input type="text" class="form-control" id="firstName" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors}"/>
+          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">Pole wymagane</div>
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" class="form-control" id="lastName" required [(ngModel)]="employee.lastname"
-                 name="lastName">
+          <label>Nazwisko</label>
+          <input type="text" class="form-control" id="lastName" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors}"/>
+          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required">Pole wymagane</div>
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="pesel">PESEL</label>
-          <input type="text" class="form-control" id="pesel" required [(ngModel)]="employee.pesel" name="pesel">
+          <label>PESEL</label>
+          <input type="text" class="form-control" id="pesel" formControlName="pesel"  [ngClass]="{ 'is-invalid': submitted && f.pesel.errors}"/>
+          <div *ngIf="submitted && f.pesel.errors" class="invalid-feedback">
+            <div *ngIf="f.pesel.errors.required">Pole wymagane</div>
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" required [(ngModel)]="employee.email" name="email"
-                 placeholder="nazwa@sw.gov.pl">
+          <label>Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email" placeholder="nazwa@sw.gov.pl" [ngClass]="{ 'is-invalid': submitted && f.email.errors}"/>
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Pole wymagane</div>
+          </div>
         </div>
 
         <div class="form-group">
           <label for="sex">Płeć</label>
-          <select class="form-control" name="sex" id="sex" [(ngModel)]="employee.sex">
+          <select class="form-control" name="sex" id="sex" formControlName="sex" [ngClass]="{ 'is-invalid': submitted && f.sex.errors}">
             <option *ngFor="let sex of sexs" [value]="sex">{{sex}}</option>
           </select>
+          <div *ngIf="submitted && f.sex.errors" class="invalid-feedback">
+            <div *ngIf="f.sex.errors.required">Pole wymagane</div>
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="dateOfBirth">Data urodzenia</label>
-          <input id="dateOfBirth" name="dateOfBirth" [(ngModel)]="employee.birth_date" type="date"
-                 class="form-control">
+          <label>Data urodzenia</label>
+          <input type="date" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors}"/>
+          <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
+            <div *ngIf="f.dateOfBirth.errors.required">Pole wymagane</div>
+          </div>
         </div>
+
+
       </div>
 
-      <button type="submit" [disabled]="!employeeForm.valid" class="btn btn-success">Zapisz</button>
+      <button type="submit" class="btn btn-success">Zapisz</button>
+      <button type="reset" (click)="onReset()" class="btn btn-secondary">Anuluj</button>
 
-      <div [hidden]="!submitted">
-        <h4>You submitted successfully!</h4>
-<!--        <button class="btn btn-success" (click)="newEmployee()">Add</button>-->
-      </div>
     </form>
   </div>
-
-
-<div [hidden]="!submitted">
-  <h4>You submitted successfully!</h4>
-  <button class="btn btn-success" (click)="newEmployee()">Add</button>
-</div>
