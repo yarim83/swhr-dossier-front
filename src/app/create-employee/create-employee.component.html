@@ -9,6 +9,7 @@
           <input type="text" class="form-control" id="firstName" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors}"/>
           <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
             <div *ngIf="f.firstName.errors.required">Pole wymagane</div>
+            <div *ngIf="f.firstName.errors.minlength">Wprowadzona wartość jest za krótka</div>
           </div>
         </div>
 
@@ -17,6 +18,8 @@
           <input type="text" class="form-control" id="lastName" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors}"/>
           <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
             <div *ngIf="f.lastName.errors.required">Pole wymagane</div>
+            <div *ngIf="f.lastName.errors.minlength">Wprowadzona wartość jest za krótka</div>
+
           </div>
         </div>
 
@@ -25,6 +28,7 @@
           <input type="text" class="form-control" id="pesel" formControlName="pesel"  [ngClass]="{ 'is-invalid': submitted && f.pesel.errors}"/>
           <div *ngIf="submitted && f.pesel.errors" class="invalid-feedback">
             <div *ngIf="f.pesel.errors.required">Pole wymagane</div>
+            <div *ngIf="f.pesel.errors.pattern">Wprowadź poprawny numer PESEL</div>
           </div>
         </div>
 
@@ -33,6 +37,7 @@
           <input type="email" class="form-control" id="email" formControlName="email" placeholder="nazwa@sw.gov.pl" [ngClass]="{ 'is-invalid': submitted && f.email.errors}"/>
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required">Pole wymagane</div>
+            <div *ngIf="f.email.errors.email">Musisz wprowadzić poprawny adres</div>
           </div>
         </div>
 
@@ -58,7 +63,7 @@
       </div>
 
       <button type="submit" class="btn btn-success">Zapisz</button>
-      <button type="reset" (click)="onReset()" class="btn btn-secondary">Anuluj</button>
+      <button type="reset" (click)="onReset()" class="btn btn-secondary" style="margin-left: 10px">Anuluj</button>
 
     </form>
   </div>

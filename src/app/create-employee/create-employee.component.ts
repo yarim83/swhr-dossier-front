@@ -6,6 +6,7 @@ import {FormGroup} from '@angular/forms';
 import {FormBuilder} from '@angular/forms';
 import {Validators} from '@angular/forms';
 
+
 @Component({
   selector: 'app-create-employee',
   templateUrl: './create-employee.component.html',
@@ -15,7 +16,6 @@ export class CreateEmployeeComponent implements OnInit {
 
   registerForm: FormGroup;
   employee: Employee = new Employee();
-  dupa: Employee = new Employee();
   submitted = false;
 
   sexs = ['kobieta', 'meżczyzna'];
@@ -27,30 +27,23 @@ export class CreateEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      pesel: ['', Validators.required],
-      sex: ['', Validators.required],
-      dateOfBirth: ['', Validators.required]
+      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required,Validators.minLength(4)]],
+      email: ['', [Validators.required, Validators.email]],
+      pesel: ['', [Validators.required, Validators.pattern('[0-9]{4}[0-3]{1}[0-9]{6}')]],
+      sex: ['', [Validators.required]],
+      dateOfBirth: [['', Validators.required]]
     });
   }
 
-  newEmployee(): void {
-    this.submitted = false;
-    this.employee = new Employee();
-  }
-
   save() {
-    this.dupa.firstName  = this.registerForm.value.firstName;
-    this.dupa.lastname = this.registerForm.value.lastName;
-    this.dupa.email = this.registerForm.value.email;
-    this.dupa.pesel = this.registerForm.value.pesel;
-    this.dupa.sex = this.registerForm.value.sex;
-    this.dupa.birth_date = this.registerForm.value.dateOfBirth;
-
-    console.log(this.dupa);
-    this.employeeService.createEmployee(this.dupa)
+    this.employee.firstName  = this.registerForm.value.firstName;
+    this.employee.lastname = this.registerForm.value.lastName;
+    this.employee.email = this.registerForm.value.email;
+    this.employee.pesel = this.registerForm.value.pesel;
+    this.employee.sex = this.registerForm.value.sex;
+    this.employee.birth_date = this.registerForm.value.dateOfBirth;
+    this.employeeService.createEmployee(this.employee)
       .subscribe(data => console.log(data), error => console.log(error));
     this.employee = new Employee();
     this.gotoList();
