@@ -1,69 +1,84 @@
 <h2 class="text-info">Kreator pracownika / funkcjonariusza</h2>
 <hr/>
-  <div>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<div>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-      <div>
-        <div class="form-group">
-          <label>Imię</label>
-          <input type="text" class="form-control" id="firstName" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors}"/>
-          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-            <div *ngIf="f.firstName.errors.required">Pole wymagane</div>
-            <div *ngIf="f.firstName.errors.minlength">Wprowadzona wartość jest za krótka</div>
-          </div>
+    <div>
+      <div class="form-group">
+        <label>Imię</label>
+        <input type="text" class="form-control" id="firstName" formControlName="firstName"
+               [ngClass]="{ 'is-invalid': submitted && f.firstName.errors}"/>
+        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+          <div *ngIf="f.firstName.errors.required">Pole wymagane</div>
+          <div *ngIf="f.firstName.errors.minlength">Wprowadzona wartość jest za krótka</div>
         </div>
-
-        <div class="form-group">
-          <label>Nazwisko</label>
-          <input type="text" class="form-control" id="lastName" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors}"/>
-          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-            <div *ngIf="f.lastName.errors.required">Pole wymagane</div>
-            <div *ngIf="f.lastName.errors.minlength">Wprowadzona wartość jest za krótka</div>
-
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>PESEL</label>
-          <input type="text" class="form-control" id="pesel" formControlName="pesel"  [ngClass]="{ 'is-invalid': submitted && f.pesel.errors}"/>
-          <div *ngIf="submitted && f.pesel.errors" class="invalid-feedback">
-            <div *ngIf="f.pesel.errors.required">Pole wymagane</div>
-            <div *ngIf="f.pesel.errors.pattern">Wprowadź poprawny numer PESEL</div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" class="form-control" id="email" formControlName="email" placeholder="nazwa@sw.gov.pl" [ngClass]="{ 'is-invalid': submitted && f.email.errors}"/>
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Pole wymagane</div>
-            <div *ngIf="f.email.errors.email">Musisz wprowadzić poprawny adres</div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="sex">Płeć</label>
-          <select class="form-control" name="sex" id="sex" formControlName="sex" [ngClass]="{ 'is-invalid': submitted && f.sex.errors}">
-            <option *ngFor="let sex of sexs" [value]="sex">{{sex}}</option>
-          </select>
-          <div *ngIf="submitted && f.sex.errors" class="invalid-feedback">
-            <div *ngIf="f.sex.errors.required">Pole wymagane</div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Data urodzenia</label>
-          <input type="date" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors}"/>
-          <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
-            <div *ngIf="f.dateOfBirth.errors.required">Pole wymagane</div>
-          </div>
-        </div>
-
-
       </div>
 
-      <button type="submit" class="btn btn-success">Zapisz</button>
-      <button type="reset" (click)="onReset()" class="btn btn-secondary" style="margin-left: 10px">Anuluj</button>
+      <div class="form-group">
+        <label>Nazwisko</label>
+        <input type="text" class="form-control" id="lastName" formControlName="lastName"
+               [ngClass]="{ 'is-invalid': submitted && f.lastName.errors}"/>
+        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+          <div *ngIf="f.lastName.errors.required">Pole wymagane</div>
+          <div *ngIf="f.lastName.errors.minlength">Wprowadzona wartość jest za krótka</div>
 
-    </form>
-  </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>PESEL</label>
+        <input type="text" class="form-control" id="pesel" formControlName="pesel"
+               [ngClass]="{ 'is-invalid': submitted && f.pesel.errors}"/>
+        <div *ngIf="submitted && f.pesel.errors" class="invalid-feedback">
+          <div *ngIf="f.pesel.errors.required">Pole wymagane</div>
+          <div *ngIf="f.pesel.errors.pattern">Wprowadź poprawny numer PESEL</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email" placeholder="nazwa@sw.gov.pl"
+               [ngClass]="{ 'is-invalid': submitted && f.email.errors}"/>
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Pole wymagane</div>
+          <div *ngIf="f.email.errors.email">Musisz wprowadzić poprawny adres</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="sex">Płeć</label>
+        <select class="form-control" name="sex" id="sex" formControlName="sex"
+                [ngClass]="{ 'is-invalid': submitted && f.sex.errors}">
+          <option *ngFor="let sex of sexs" [value]="sex">{{sex}}</option>
+        </select>
+        <div *ngIf="submitted && f.sex.errors" class="invalid-feedback">
+          <div *ngIf="f.sex.errors.required">Pole wymagane</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Data urodzenia</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors}"/>
+        <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
+          <div *ngIf="f.dateOfBirth.errors.required">Pole wymagane</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="container">
+      <div style="margin-bottom: 10px">
+        <button type="submit" class="btn btn-primary">Zapisz</button>
+        <button type="reset" (click)="onReset()" class="btn btn-secondary" style="margin-left: 10px">Anuluj</button>
+      </div>
+      <div class="alert alert-success" role="alert" *ngIf="submitted && !errors">
+        <h4 class="alert-heading">Gratulacje !!</h4>
+        <p>Poprawny zapis, <a (click)="gotoList()">wróć do listy</a>. Dziękuję ;)</p>
+        <hr/>
+        <button class="btn btn-outline-secondary" type="button" (click)="gotoList()">Powrót</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
