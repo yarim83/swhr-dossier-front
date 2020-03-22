@@ -1,7 +1,6 @@
 import {Address} from './address';
 import {Department} from './department';
 import {PermisionLevel} from './permisionLevel';
-import {Photo} from './photo';
 
 export class Employee{
   id?: number;
@@ -10,8 +9,8 @@ export class Employee{
   email?: string;
   pesel?: string;
   sex?: string;
-  birth_date?: Date;
-  photo?: Photo;
+  birthDate?: Date;
+  photoId?: number;
   address?: Address;
   department?: Department;
   permisionLevel?: PermisionLevel;

@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Employee } from '../models/employee';
-import { ActivatedRoute, Router } from '@angular/router';
-import { EmployeeService } from '../employee.service';
+import {Component, OnInit} from '@angular/core';
+import {Employee} from '../models/employee';
+import {ActivatedRoute, Router} from '@angular/router';
+import {EmployeeService} from '../employee.service';
+import {FormGroup, Validators} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-update-employee',
@@ -12,35 +16,110 @@ export class UpdateEmployeeComponent implements OnInit {
 
   id: number;
   employee: Employee;
+  submitted = false;
+  errors = false;
+  registerForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private router: Router,
-              private employeeService: EmployeeService) { }
+  selectedFile?: File;
+  retrievedImage?: any;
+  base64Data?: any;
+  retrieveResonse?: any;
+  message: string;
+  imgAdded: boolean = false;
+
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private employeeService: EmployeeService,
+              private formBuilder: FormBuilder,
+              private http: HttpClient) {
+  }
 
   ngOnInit() {
     this.employee = new Employee();
-
+    this.validate();
     this.id = this.route.snapshot.params['id'];
 
     this.employeeService.getEmployee(this.id)
       .subscribe(data => {
-        console.log(data)
+        console.log(data);
         this.employee = data;
+        this.getImage();
       }, error => console.log(error));
+  }
+
+  get f() {
+    return this.registerForm.controls;
   }
 
   updateEmployee() {
     this.employeeService.updateEmployee(this.id, this.employee)
       .subscribe(data => console.log(data), error => console.log(error));
-    this.employee = new Employee();
-    this.gotoList();
+  }
+
+  onReset() {
+    this.submitted = false;
+    this.registerForm.reset();
   }
 
   onSubmit() {
-    this.updateEmployee();
+    this.submitted = true;
+
+    if (this.registerForm.invalid) {
+      this.errors = true;
+      return;
+    } else {
+      this.errors = false;
+      this.updateEmployee();
+    }
   }
 
   gotoList() {
+    this.employee = new Employee();
     this.router.navigate(['/employees']);
   }
 
+  validate() {
+    this.registerForm = this.formBuilder.group({
+        firstName: ['', [Validators.required, Validators.minLength(3)]],
+        lastName: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required]],
+        dateOfBirth: ['', [Validators.required]],
+        street: ['', [Validators.required, Validators.minLength(3)]],
+        streetNumber: ['', [Validators.required]],
+        city: ['', [Validators.required, Validators.minLength(3)]],
+      }
+    );
+  }
+
+  onFileChange(event) {
+    this.selectedFile = event.target.files[0];
+    this.imgAdded = true;
+  }
+
+  onUpload() {
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+
+    this.http.post('http://localhost:8080/api/photo/upload', uploadImageData, {observe: 'response'})
+      .subscribe((response) => {
+        if (response.status === 200) {
+          this.message = 'Success';
+          // this.photo = response.body;
+          // this.save(this.photo);
+        } else {
+          this.message = 'Fail';
+        }
+      });
+  }
+
+  getImage() {
+    this.http.get('http://localhost:8080/api/photo/' + this.employee.photoId)
+      .subscribe(
+        res => {
+          this.retrieveResonse = res;
+          this.base64Data = this.retrieveResonse.picByte;
+          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+        }
+      );
+  }
 }

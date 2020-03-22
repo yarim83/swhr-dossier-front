@@ -1,22 +1,22 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h2>Lista osób</h2>
+    <h2 class="text-info">Lista pracowników / funkcjonariuszy</h2>
   </div>
   <div class="panel-body">
     <table class="table">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">Firstname</th>
-        <th scope="col">Lastname</th>
+        <th scope="col">Imię</th>
+        <th scope="col">Nazwisko</th>
         <th scope="col">Email</th>
-        <th scope="col">Actions</th>
+        <th scope="col">Akcja</th>
       </tr>
       </thead>
 
       <tbody>
       <tr *ngFor="let employee of employees$">
         <td>{{employee.firstName}}</td>
-        <td>{{employee.lastname}}</td>
+        <td>{{employee.lastName}}</td>
         <td>{{employee.email}}</td>
         <td>
           <button (click)="employeeDetails(employee.id)" class="btn btn-outline-primary" style="margin-left: 10px">

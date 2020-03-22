@@ -1,4 +1,6 @@
 export class Photo {
   id?: number;
-  photoName?: any;
+  name?: string;
+  type?: string;
+  picByte?: number;
 }
