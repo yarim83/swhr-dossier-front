@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {Photo} from '../models/photo';
 
 @Component({
   selector: 'app-employee-details',
@@ -34,7 +33,7 @@ export class EmployeeDetailsComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.employee = data;
-        this.getImage();
+        this.getImage(this.employee.photoId);
       }, error => console.log(error));
 
   }
@@ -47,8 +46,8 @@ export class EmployeeDetailsComponent implements OnInit {
     this.router.navigate(['update', id]);
   }
 
-  getImage() {
-    this.http.get('http://localhost:8080/api/photo/' + this.employee.photoId)
+  getImage(photoId: number) {
+    this.http.get('http://localhost:8080/api/photo/' + photoId)
       .subscribe(
         res => {
           this.retrieveResonse = res;

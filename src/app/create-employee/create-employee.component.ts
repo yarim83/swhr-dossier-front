@@ -8,6 +8,8 @@ import {Validators} from '@angular/forms';
 import {Address} from '../models/address';
 import {Photo} from '../models/photo';
 import {HttpClient} from '@angular/common/http';
+import {DepartmentService} from '../services/department.service';
+import {Department} from '../models/department';
 
 @Component({
   selector: 'app-create-employee',
@@ -16,8 +18,9 @@ import {HttpClient} from '@angular/common/http';
 })
 export class CreateEmployeeComponent implements OnInit {
 
+  private departments$: Array<Department>;
+
   selectedFile?: File;
-  retrievedImage?: any;
   message: string;
   imgAdded: boolean = false;
 
@@ -30,13 +33,17 @@ export class CreateEmployeeComponent implements OnInit {
   sexs = ['kobieta', 'meżczyzna'];
   countrys = ['Polska', 'Niemcy', 'Anglia'];
 
+
   constructor(private employeeService: EmployeeService,
+              private departmentService: DepartmentService,
               private router: Router,
               private formBuilder: FormBuilder,
               private http: HttpClient) {
   }
 
   ngOnInit() {
+    this.getDepartmentList();
+
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(3)]],
       lastName: ['', [Validators.required, Validators.minLength(3)]],
@@ -48,6 +55,7 @@ export class CreateEmployeeComponent implements OnInit {
       streetNumber: ['', [Validators.required]],
       city: ['', [Validators.required, Validators.minLength(3)]],
       country: ['', [Validators.required]],
+      departments: ['', [Validators.required]]
     });
   }
 
@@ -64,12 +72,12 @@ export class CreateEmployeeComponent implements OnInit {
     this.address.streetNumber = this.registerForm.value.streetNumber;
     this.employee.address = this.address;
     this.employee.photoId = photo.id;
-    console.log(this.employee);
+    this.employee.department_id = this.registerForm.value.departments;
     this.employeeService.createEmployee(this.employee)
       .subscribe(data => {
-        console.log(data);
+          console.log(data);
         },
-          error => console.log(error));
+        error => console.log(error));
     this.employee = new Employee();
   }
 
@@ -118,6 +126,16 @@ export class CreateEmployeeComponent implements OnInit {
         } else {
           this.message = 'Fail';
         }
+      });
+  }
+
+  getDepartmentList() {
+    this.departmentService.getDepartmentList().subscribe(
+      data => {
+        this.departments$ = data;
+      },
+      error => {
+        console.log(error.error.message);
       });
   }
 

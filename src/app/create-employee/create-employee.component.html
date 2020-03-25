@@ -60,6 +60,17 @@
             <div *ngIf="f.sex.errors.required">Pole wymagane</div>
           </div>
         </div>
+        <div class="form-group col-md-2">
+          <label for="sex">Dział</label>
+          <select class="form-control" name="departments" id="departments" formControlName="departments"
+                  [ngClass]="{ 'is-invalid': submitted && f.departments.errors}">
+            <option *ngFor="let department of departments$" [value]="department.id">{{department.shortName}}</option>
+          </select>
+          <div *ngIf="submitted && f.departments.errors" class="invalid-feedback">
+            <div *ngIf="f.departments.errors.required">Pole wymagane</div>
+          </div>
+
+        </div>
 
       </div>
 

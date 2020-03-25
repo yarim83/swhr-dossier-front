@@ -1,5 +1,4 @@
 import {Address} from './address';
-import {Department} from './department';
 import {PermisionLevel} from './permisionLevel';
 
 export class Employee{
@@ -12,6 +11,6 @@ export class Employee{
   birthDate?: Date;
   photoId?: number;
   address?: Address;
-  department?: Department;
+  department_id?: number;
   permisionLevel?: PermisionLevel;
 }

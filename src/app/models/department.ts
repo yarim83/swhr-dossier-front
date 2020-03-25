@@ -1,6 +1,6 @@
 export class Department {
   id?: number;
-  long_name?: string;
-  short_name?: string;
+  longName?: string;
+  shortName?: string;
   description?: string;
 }

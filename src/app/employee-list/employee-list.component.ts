@@ -16,14 +16,14 @@ export class EmployeeListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reloadData2();
+    this.reloadDataPaging();
   }
 
   // reloadData() {
   //   this.employees$ = this.employeeService.getEmployeesList();
   // }
 
-  reloadData2() {
+  reloadDataPaging() {
     this.employeeService.getEmployeesListPage(this.page).subscribe(
       data => {
         this.employees$ = data[`content`];
@@ -37,7 +37,7 @@ export class EmployeeListComponent implements OnInit {
   setPage(i, event: any) {
     event.preventDefault();
     this.page = i;
-    this.reloadData2();
+    this.reloadDataPaging();
   }
 
   deleteEmployee(id: number) {
@@ -45,7 +45,7 @@ export class EmployeeListComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.reloadData2();
+          this.reloadDataPaging();
         },
         error => console.log(error));
   }

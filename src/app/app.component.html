@@ -10,6 +10,17 @@
     <li class="nav-item">
       <a routerLink="add" class="nav-link" routerLinkActive="active">Dodaj pracownika</a>
     </li>
+    <li class="navbar-item dropdown">
+      <a class="nav-link dropdown-toggle" routerLinkActive="active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Administracja
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" routerLink="department" routerLinkActive="active">Komórki organizacyjne</a>
+        <a class="dropdown-item" routerLink="addDepartment" routerLinkActive="active">Dodaj komórkę organizacyjną</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Coś jeszcze</a>
+      </div>
+    </li>
   </ul>
 </nav>
 <div class="container">

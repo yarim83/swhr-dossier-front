@@ -9,6 +9,10 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
 import { ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { DepartmentCreateComponent } from './components/department-create/department-create.component';
+import { DepartmentDetailsComponent } from './components/department-details/department-details.component';
+import { DepartmentListComponent } from './components/department-list/department-list.component';
+import { DepartmentUpdateComponent } from './components/department-update/department-update.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { ConfirmationPopoverModule} from 'angular-confirmation-popover';
     CreateEmployeeComponent,
     EmployeeDetailsComponent,
     EmployeeListComponent,
-    UpdateEmployeeComponent
+    UpdateEmployeeComponent,
+    DepartmentCreateComponent,
+    DepartmentDetailsComponent,
+    DepartmentListComponent,
+    DepartmentUpdateComponent
   ],
   imports: [
     BrowserModule,
