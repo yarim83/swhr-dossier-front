@@ -1,15 +1,15 @@
-import {EmployeeService} from '../employee.service';
-import {Employee} from '../models/employee';
+import {EmployeeService} from '../../../employee.service';
+import {Employee} from '../../../models/employee';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormGroup} from '@angular/forms';
 import {FormBuilder} from '@angular/forms';
 import {Validators} from '@angular/forms';
-import {Address} from '../models/address';
-import {Photo} from '../models/photo';
+import {Address} from '../../../models/address';
+import {Photo} from '../../../models/photo';
 import {HttpClient} from '@angular/common/http';
-import {DepartmentService} from '../services/department.service';
-import {Department} from '../models/department';
+import {DepartmentService} from '../../../services/department.service';
+import {Department} from '../../../models/department';
 
 @Component({
   selector: 'app-create-employee',
@@ -23,6 +23,7 @@ export class CreateEmployeeComponent implements OnInit {
   selectedFile?: File;
   message: string;
   imgAdded: boolean = false;
+  employeeCreated: boolean = false;
 
   registerForm: FormGroup;
   employee: Employee = new Employee();
@@ -75,13 +76,14 @@ export class CreateEmployeeComponent implements OnInit {
     this.employee.department_id = this.registerForm.value.departments;
     this.employeeService.createEmployee(this.employee)
       .subscribe(data => {
-          console.log(data);
+        this.employeeCreated = true;
+        console.log(data);
         },
         error => console.log(error));
     this.employee = new Employee();
   }
 
-  get f() {
+  get formControls() {
     return this.registerForm.controls;
   }
 

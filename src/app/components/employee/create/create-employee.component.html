@@ -23,51 +23,51 @@
         <div class="form-group col-md-4">
           <label>Imię</label>
           <input type="text" class="form-control" id="firstName" formControlName="firstName"
-                 [ngClass]="{ 'is-invalid': submitted && f.firstName.errors}"/>
-          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-            <div *ngIf="f.firstName.errors.required">Pole wymagane</div>
-            <div *ngIf="f.firstName.errors.minlength">Wprowadzona wartość jest za krótka</div>
+                 [ngClass]="{ 'is-invalid': submitted && formControls.firstName.errors}"/>
+          <div *ngIf="submitted && formControls.firstName.errors" class="invalid-feedback">
+            <div *ngIf="formControls.firstName.errors.required">Pole wymagane</div>
+            <div *ngIf="formControls.firstName.errors.minlength">Wprowadzona wartość jest za krótka</div>
           </div>
         </div>
 
         <div class="form-group col-md-4">
           <label>Nazwisko</label>
           <input type="text" class="form-control" id="lastName" formControlName="lastName"
-                 [ngClass]="{ 'is-invalid': submitted && f.lastName.errors}"/>
-          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-            <div *ngIf="f.lastName.errors.required">Pole wymagane</div>
-            <div *ngIf="f.lastName.errors.minlength">Wprowadzona wartość jest za krótka</div>
+                 [ngClass]="{ 'is-invalid': submitted && formControls.lastName.errors}"/>
+          <div *ngIf="submitted && formControls.lastName.errors" class="invalid-feedback">
+            <div *ngIf="formControls.lastName.errors.required">Pole wymagane</div>
+            <div *ngIf="formControls.lastName.errors.minlength">Wprowadzona wartość jest za krótka</div>
           </div>
         </div>
 
         <div class="form-group col-md-2">
           <label>PESEL</label>
           <input type="text" class="form-control" id="pesel" formControlName="pesel"
-                 [ngClass]="{ 'is-invalid': submitted && f.pesel.errors}"/>
-          <div *ngIf="submitted && f.pesel.errors" class="invalid-feedback">
-            <div *ngIf="f.pesel.errors.required">Pole wymagane</div>
-            <div *ngIf="f.pesel.errors.pattern">Wprowadź poprawny numer PESEL</div>
+                 [ngClass]="{ 'is-invalid': submitted && formControls.pesel.errors}"/>
+          <div *ngIf="submitted && formControls.pesel.errors" class="invalid-feedback">
+            <div *ngIf="formControls.pesel.errors.required">Pole wymagane</div>
+            <div *ngIf="formControls.pesel.errors.pattern">Wprowadź poprawny numer PESEL</div>
           </div>
         </div>
 
         <div class="form-group col-md-2">
           <label for="sex">Płeć</label>
           <select class="form-control" name="sex" id="sex" formControlName="sex"
-                  [ngClass]="{ 'is-invalid': submitted && f.sex.errors}">
+                  [ngClass]="{ 'is-invalid': submitted && formControls.sex.errors}">
             <option *ngFor="let sex of sexs" [value]="sex">{{sex}}</option>
           </select>
-          <div *ngIf="submitted && f.sex.errors" class="invalid-feedback">
-            <div *ngIf="f.sex.errors.required">Pole wymagane</div>
+          <div *ngIf="submitted && formControls.sex.errors" class="invalid-feedback">
+            <div *ngIf="formControls.sex.errors.required">Pole wymagane</div>
           </div>
         </div>
         <div class="form-group col-md-2">
           <label for="sex">Dział</label>
           <select class="form-control" name="departments" id="departments" formControlName="departments"
-                  [ngClass]="{ 'is-invalid': submitted && f.departments.errors}">
+                  [ngClass]="{ 'is-invalid': submitted && formControls.departments.errors}">
             <option *ngFor="let department of departments$" [value]="department.id">{{department.shortName}}</option>
           </select>
-          <div *ngIf="submitted && f.departments.errors" class="invalid-feedback">
-            <div *ngIf="f.departments.errors.required">Pole wymagane</div>
+          <div *ngIf="submitted && formControls.departments.errors" class="invalid-feedback">
+            <div *ngIf="formControls.departments.errors.required">Pole wymagane</div>
           </div>
 
         </div>
@@ -78,10 +78,10 @@
         <div class="form-group col-md-6">
           <label>Email</label>
           <input type="email" class="form-control" id="email" formControlName="email" placeholder="nazwa@sw.gov.pl"
-                 [ngClass]="{ 'is-invalid': submitted && f.email.errors}"/>
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Pole wymagane</div>
-            <div *ngIf="f.email.errors.email">Musisz wprowadzić poprawny adres</div>
+                 [ngClass]="{ 'is-invalid': submitted && formControls.email.errors}"/>
+          <div *ngIf="submitted && formControls.email.errors" class="invalid-feedback">
+            <div *ngIf="formControls.email.errors.required">Pole wymagane</div>
+            <div *ngIf="formControls.email.errors.email">Musisz wprowadzić poprawny adres</div>
           </div>
         </div>
 
@@ -89,9 +89,9 @@
         <div class="form-group col-md-6">
           <label>Data urodzenia</label>
           <input type="date" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth" class="form-control"
-                 [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors}"/>
-          <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
-            <div *ngIf="f.dateOfBirth.errors.required">Pole wymagane</div>
+                 [ngClass]="{ 'is-invalid': submitted && formControls.dateOfBirth.errors}"/>
+          <div *ngIf="submitted && formControls.dateOfBirth.errors" class="invalid-feedback">
+            <div *ngIf="formControls.dateOfBirth.errors.required">Pole wymagane</div>
           </div>
         </div>
       </div>
@@ -100,40 +100,40 @@
         <div class="form-group col-md-4">
           <label>Ulica</label>
           <input type="text" class="form-control" id="street" formControlName="street"
-                 [ngClass]="{ 'is-invalid': submitted && f.street.errors}"/>
-          <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
-            <div *ngIf="f.street.errors.required">Pole wymagane</div>
-            <div *ngIf="f.street.errors.minlength">Wprowadzona wartość jest za krótka</div>
+                 [ngClass]="{ 'is-invalid': submitted && formControls.street.errors}"/>
+          <div *ngIf="submitted && formControls.street.errors" class="invalid-feedback">
+            <div *ngIf="formControls.street.errors.required">Pole wymagane</div>
+            <div *ngIf="formControls.street.errors.minlength">Wprowadzona wartość jest za krótka</div>
           </div>
         </div>
 
         <div class="form-group col-md-2">
           <label>Numer:</label>
           <input type="text" class="form-control" id="streetNumber" formControlName="streetNumber"
-                 [ngClass]="{ 'is-invalid': submitted && f.streetNumber.errors}"/>
-          <div *ngIf="submitted && f.streetNumber.errors" class="invalid-feedback">
-            <div *ngIf="f.streetNumber.errors.required">Pole wymagane</div>
+                 [ngClass]="{ 'is-invalid': submitted && formControls.streetNumber.errors}"/>
+          <div *ngIf="submitted && formControls.streetNumber.errors" class="invalid-feedback">
+            <div *ngIf="formControls.streetNumber.errors.required">Pole wymagane</div>
           </div>
         </div>
 
         <div class="form-group col-md-3">
           <label>Miasto</label>
           <input type="text" class="form-control" id="city" formControlName="city"
-                 [ngClass]="{ 'is-invalid': submitted && f.city.errors}"/>
-          <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
-            <div *ngIf="f.city.errors.required">Pole wymagane</div>
-            <div *ngIf="f.city.errors.minlength">Wprowadzona wartość jest za krótka</div>
+                 [ngClass]="{ 'is-invalid': submitted && formControls.city.errors}"/>
+          <div *ngIf="submitted && formControls.city.errors" class="invalid-feedback">
+            <div *ngIf="formControls.city.errors.required">Pole wymagane</div>
+            <div *ngIf="formControls.city.errors.minlength">Wprowadzona wartość jest za krótka</div>
           </div>
         </div>
 
         <div class="form-group col-md-3">
           <label for="sex">Narodowość</label>
           <select class="form-control" name="country" id="country" formControlName="country"
-                  [ngClass]="{ 'is-invalid': submitted && f.country.errors}">
+                  [ngClass]="{ 'is-invalid': submitted && formControls.country.errors}">
             <option *ngFor="let country of countrys" [value]="country">{{country}}</option>
           </select>
-          <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
-            <div *ngIf="f.country.errors.required">Pole wymagane</div>
+          <div *ngIf="submitted && formControls.country.errors" class="invalid-feedback">
+            <div *ngIf="formControls.country.errors.required">Pole wymagane</div>
           </div>
         </div>
       </div>
@@ -145,12 +145,20 @@
         <button type="submit" class="btn btn-primary">Zapisz</button>
         <button type="reset" (click)="onReset()" class="btn btn-secondary" style="margin-left: 10px">Anuluj</button>
       </div>
-      <div class="alert alert-success" role="alert" *ngIf="submitted && !errors && imgAdded">
+      <div class="alert alert-success" role="alert" *ngIf="submitted && !errors && imgAdded && employeeCreated; else elseBlock">
         <h4 class="alert-heading">Gratulacje !!</h4>
         <p>Poprawny zapis, <a (click)="gotoList()">wróć do listy</a>. Dziękuję ;)</p>
         <hr/>
         <button class="btn btn-outline-secondary" type="button" (click)="gotoList()">Powrót</button>
       </div>
+      <ng-template #elseBlock>
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Coś poszło nie tak</h4>
+        <p><a (click)="gotoList()">wróć do listy</a>. Dziękuję ;)</p>
+        <hr/>
+        <button class="btn btn-outline-secondary" type="button" (click)="gotoList()">Powrót</button>
+      </div>
+      </ng-template>
     </div>
   </form>
 </div>
