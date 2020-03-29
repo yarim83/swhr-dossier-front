@@ -23,7 +23,7 @@ export class CreateEmployeeComponent implements OnInit {
   selectedFile?: File;
   message: string;
   imgAdded: boolean = false;
-  employeeCreated: boolean = false;
+  employeeCreated: boolean;
 
   registerForm: FormGroup;
   employee: Employee = new Employee();
@@ -79,7 +79,10 @@ export class CreateEmployeeComponent implements OnInit {
         this.employeeCreated = true;
         console.log(data);
         },
-        error => console.log(error));
+        error => {
+        this.employeeCreated = false;
+        console.log(error);
+        });
     this.employee = new Employee();
   }
 

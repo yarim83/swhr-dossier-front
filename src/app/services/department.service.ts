@@ -8,7 +8,7 @@ import {Department} from '../models/department';
 })
 export class DepartmentService {
 
-  private baseUrl = 'http://localhost:8080/api/department/';
+  private baseUrl = 'http://localhost:8080/api/departments/';
 
   constructor(private http: HttpClient) {
     this.getDepartmentList();

@@ -20,7 +20,9 @@ const routes: Routes = [
   {path: 'department', component: DepartmentListComponent},
   {path: 'departmentAdd', component: DepartmentCreateComponent},
   {path: 'departmentDetails/:id', component: DepartmentDetailsComponent},
-  {path: 'departmentUpdate/id', component: DepartmentUpdateComponent}
+  {path: 'departmentUpdate/id', component: DepartmentUpdateComponent},
+  // {path: 'permissionLevel', component:},
+  // {path: 'permissionLevelAdd', component: }
 ];
 
 @NgModule({

@@ -145,20 +145,18 @@
         <button type="submit" class="btn btn-primary">Zapisz</button>
         <button type="reset" (click)="onReset()" class="btn btn-secondary" style="margin-left: 10px">Anuluj</button>
       </div>
-      <div class="alert alert-success" role="alert" *ngIf="submitted && !errors && imgAdded && employeeCreated; else elseBlock">
+      <div class="alert alert-success" role="alert" *ngIf="submitted && !errors && imgAdded && employeeCreated">
         <h4 class="alert-heading">Gratulacje !!</h4>
         <p>Poprawny zapis, <a (click)="gotoList()">wróć do listy</a>. Dziękuję ;)</p>
         <hr/>
         <button class="btn btn-outline-secondary" type="button" (click)="gotoList()">Powrót</button>
       </div>
-      <ng-template #elseBlock>
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-danger" role="alert" *ngIf="employeeCreated">
         <h4 class="alert-heading">Coś poszło nie tak</h4>
         <p><a (click)="gotoList()">wróć do listy</a>. Dziękuję ;)</p>
         <hr/>
         <button class="btn btn-outline-secondary" type="button" (click)="gotoList()">Powrót</button>
       </div>
-      </ng-template>
     </div>
   </form>
 </div>
