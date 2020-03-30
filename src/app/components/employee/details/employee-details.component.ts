@@ -35,15 +35,14 @@ export class EmployeeDetailsComponent implements OnInit {
         this.employee = data;
         this.getImage(this.employee.photoId);
       }, error => console.log(error));
-
   }
 
-  list(){
-    this.router.navigate(['employees']);
+  employeeList(){
+    this.router.navigate(['employeesList']);
   }
 
-  update(id: number){
-    this.router.navigate(['update', id]);
+  employeeUpdate(id: number) {
+    this.router.navigate(['employeeUpdate', id]);
   }
 
   getImage(photoId: number) {

@@ -8,7 +8,7 @@ import { Employee } from './models/employee';
 })
 export class EmployeeService {
 
-  private baseUrl = 'http://localhost:8080/api/employees/';
+  private baseUrl = 'http://localhost:8080/api/employees';
 
   constructor(private http: HttpClient) {
     this.getEmployeesList();
@@ -19,7 +19,7 @@ export class EmployeeService {
   }
 
   createEmployee(employee: Employee): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`, employee);
+    return this.http.post(`${this.baseUrl}/`, employee);
   }
 
   updateEmployee(id: number, value: any): Observable<Object> {

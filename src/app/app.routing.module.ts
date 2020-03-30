@@ -11,13 +11,12 @@ import {DepartmentUpdateComponent} from './components/department/update/departme
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'employee', pathMatch: 'full'},
-  {path: 'employees', component: EmployeeListComponent},
-  {path: 'add', component: CreateEmployeeComponent},
-  {path: 'update/:id', component: UpdateEmployeeComponent},
-  {path: 'details/:id', component: EmployeeDetailsComponent},
-  {path: '', redirectTo: 'department', pathMatch: 'full'},
-  {path: 'department', component: DepartmentListComponent},
+  {path: '', redirectTo: 'employeesList', pathMatch: 'full'},
+  {path: 'employeesList', component: EmployeeListComponent},
+  {path: 'employeeAdd', component: CreateEmployeeComponent},
+  {path: 'employeeUpdate/:id', component: UpdateEmployeeComponent},
+  {path: 'employeeDetails/:id', component: EmployeeDetailsComponent},
+  {path: 'departmentList', component: DepartmentListComponent},
   {path: 'departmentAdd', component: DepartmentCreateComponent},
   {path: 'departmentDetails/:id', component: DepartmentDetailsComponent},
   {path: 'departmentUpdate/id', component: DepartmentUpdateComponent},

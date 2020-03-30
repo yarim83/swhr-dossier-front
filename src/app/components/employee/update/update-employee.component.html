@@ -36,10 +36,10 @@
         <label for="firstName">Imię</label>
         <input type="text" class="form-control" id="firstName" formControlName="firstName"
                [(ngModel)]="employee.firstName" name="firstName"
-               [ngClass]="{ 'is-invalid': submitted && f.firstName.errors}">
-        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-          <div *ngIf="f.firstName.errors.required">Pole wymagane</div>
-          <div *ngIf="f.firstName.errors.minlength">Wprowadzona wartość jest za krótka</div>
+               [ngClass]="{ 'is-invalid': submitted && formControls.firstName.errors}">
+        <div *ngIf="submitted && formControls.firstName.errors" class="invalid-feedback">
+          <div *ngIf="formControls.firstName.errors.required">Pole wymagane</div>
+          <div *ngIf="formControls.firstName.errors.minlength">Wprowadzona wartość jest za krótka</div>
         </div>
       </div>
 
@@ -47,10 +47,10 @@
         <label for="lastName">Nazwisko</label>
         <input type="text" class="form-control" id="lastName" formControlName="lastName"
                [(ngModel)]="employee.lastName" name="lastName"
-               [ngClass]="{ 'is-invalid': submitted && f.lastName.errors}">
-        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-          <div *ngIf="f.lastName.errors.required">Pole wymagane</div>
-          <div *ngIf="f.lastName.errors.minlength">Wprowadzona wartość jest za krótka</div>
+               [ngClass]="{ 'is-invalid': submitted && formControls.lastName.errors}">
+        <div *ngIf="submitted && formControls.lastName.errors" class="invalid-feedback">
+          <div *ngIf="formControls.lastName.errors.required">Pole wymagane</div>
+          <div *ngIf="formControls.lastName.errors.minlength">Wprowadzona wartość jest za krótka</div>
         </div>
       </div>
 
@@ -58,23 +58,39 @@
         <label for="email">Data urodzenia</label>
         <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth"
                [(ngModel)]="employee.birthDate" name="dateOfBirth"
-               [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors}"/>
-        <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
-          <div *ngIf="f.dateOfBirth.errors.required">Pole wymagane</div>
+               [ngClass]="{ 'is-invalid': submitted && formControls.dateOfBirth.errors}"/>
+        <div *ngIf="submitted && formControls.dateOfBirth.errors" class="invalid-feedback">
+          <div *ngIf="formControls.dateOfBirth.errors.required">Pole wymagane</div>
         </div>
       </div>
 
     </div>
 
-    <div class="form-group">
+    <div class="form-row">
+    <div class="form-group col-md-6">
       <label for="email">Email</label>
       <input type="text" class="form-control" id="email" formControlName="email"
              [(ngModel)]="employee.email" name="email"
-             [ngClass]="{ 'is-invalid': submitted && f.email.errors}">
-      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-        <div *ngIf="f.email.errors.required">Pole wymagane</div>
-        <div *ngIf="f.email.errors.email">Musisz wprowadzić poprawny adres</div>
+             [ngClass]="{ 'is-invalid': submitted && formControls.email.errors}">
+      <div *ngIf="submitted && formControls.email.errors" class="invalid-feedback">
+        <div *ngIf="formControls.email.errors.required">Pole wymagane</div>
+        <div *ngIf="formControls.email.errors.email">Musisz wprowadzić poprawny adres</div>
       </div>
+    </div>
+
+      <div class="form-group col-md-2">
+        <label for="departments">Dział</label>
+        <select class="form-control" name="departments" id="departments" formControlName="departments"
+                [ngClass]="{ 'is-invalid': submitted && formControls.departments.errors}">
+          <option *ngFor="let department of departments$" [value]="department.id">{{department.shortName}}</option>
+        </select>
+        <div *ngIf="submitted && formControls.departments.errors" class="invalid-feedback">
+          <div *ngIf="formControls.departments.errors.required">Pole wymagane</div>
+        </div>
+
+      </div>
+
+
     </div>
 
 
@@ -84,10 +100,10 @@
         <label for="street">Ulica</label>
         <input type="text" class="form-control" id="street" formControlName="street"
                [(ngModel)]="employee.address.street" name="street"
-               [ngClass]="{ 'is-invalid': submitted && f.street.errors}"/>
-        <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
-          <div *ngIf="f.street.errors.required">Pole wymagane</div>
-          <div *ngIf="f.street.errors.minlength">Wprowadzona wartość jest za krótka</div>
+               [ngClass]="{ 'is-invalid': submitted && formControls.street.errors}"/>
+        <div *ngIf="submitted && formControls.street.errors" class="invalid-feedback">
+          <div *ngIf="formControls.street.errors.required">Pole wymagane</div>
+          <div *ngIf="formControls.street.errors.minlength">Wprowadzona wartość jest za krótka</div>
         </div>
       </div>
 
@@ -95,9 +111,9 @@
         <label for="streetNumber">Numer:</label>
         <input type="text" class="form-control" id="streetNumber" formControlName="streetNumber"
                [(ngModel)]="employee.address.streetNumber" name="streetNumber"
-               [ngClass]="{ 'is-invalid': submitted && f.streetNumber.errors}"/>
-        <div *ngIf="submitted && f.streetNumber.errors" class="invalid-feedback">
-          <div *ngIf="f.streetNumber.errors.required">Pole wymagane</div>
+               [ngClass]="{ 'is-invalid': submitted && formControls.streetNumber.errors}"/>
+        <div *ngIf="submitted && formControls.streetNumber.errors" class="invalid-feedback">
+          <div *ngIf="formControls.streetNumber.errors.required">Pole wymagane</div>
         </div>
       </div>
 
@@ -105,10 +121,10 @@
         <label for="city">Miasto</label>
         <input type="text" class="form-control" id="city" formControlName="city"
                [(ngModel)]="employee.address.city" name="city"
-               [ngClass]="{ 'is-invalid': submitted && f.city.errors}"/>
-        <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
-          <div *ngIf="f.city.errors.required">Pole wymagane</div>
-          <div *ngIf="f.city.errors.minlength">Wprowadzona wartość jest za krótka</div>
+               [ngClass]="{ 'is-invalid': submitted && formControls.city.errors}"/>
+        <div *ngIf="submitted && formControls.city.errors" class="invalid-feedback">
+          <div *ngIf="formControls.city.errors.required">Pole wymagane</div>
+          <div *ngIf="formControls.city.errors.minlength">Wprowadzona wartość jest za krótka</div>
         </div>
       </div>
     </div>

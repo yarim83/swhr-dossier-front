@@ -5,6 +5,8 @@ import {EmployeeService} from '../../../employee.service';
 import {FormGroup, Validators} from '@angular/forms';
 import {FormBuilder} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
+import {DepartmentService} from '../../../services/department.service';
+import {Department} from '../../../models/department';
 
 
 @Component({
@@ -13,6 +15,8 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./update-employee.component.css']
 })
 export class UpdateEmployeeComponent implements OnInit {
+
+  private departments$: Array<Department>;
 
   id: number;
   employee: Employee;
@@ -30,30 +34,37 @@ export class UpdateEmployeeComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private employeeService: EmployeeService,
+              private departmentService: DepartmentService,
               private formBuilder: FormBuilder,
               private http: HttpClient) {
   }
 
   ngOnInit() {
     this.employee = new Employee();
+    this.getDepartmentList();
+
     this.validate();
     this.id = this.route.snapshot.params['id'];
 
     this.employeeService.getEmployee(this.id)
       .subscribe(data => {
-        console.log(data);
         this.employee = data;
         this.getImage();
       }, error => console.log(error));
   }
 
-  get f() {
+  get formControls() {
     return this.registerForm.controls;
   }
 
   updateEmployee() {
     this.employeeService.updateEmployee(this.id, this.employee)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => {
+        this.onUpload();
+        console.log(data);
+      }, error => {
+        console.log(error);
+      });
   }
 
   onReset() {
@@ -69,13 +80,14 @@ export class UpdateEmployeeComponent implements OnInit {
       return;
     } else {
       this.errors = false;
+
       this.updateEmployee();
     }
   }
 
   gotoList() {
     this.employee = new Employee();
-    this.router.navigate(['/employees']);
+    this.router.navigate(['/employeesList']);
   }
 
   validate() {
@@ -87,6 +99,7 @@ export class UpdateEmployeeComponent implements OnInit {
         street: ['', [Validators.required, Validators.minLength(3)]],
         streetNumber: ['', [Validators.required]],
         city: ['', [Validators.required, Validators.minLength(3)]],
+        departments: ['', [Validators.required]]
       }
     );
   }
@@ -121,5 +134,15 @@ export class UpdateEmployeeComponent implements OnInit {
           this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
         }
       );
+  }
+
+  getDepartmentList() {
+    this.departmentService.getDepartmentList().subscribe(
+      data => {
+        this.departments$ = data;
+      },
+      error => {
+        console.log(error.error.message);
+      });
   }
 }

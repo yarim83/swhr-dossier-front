@@ -9,11 +9,15 @@ import {Router} from '@angular/router';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
+
+  id: number;
   private page: number = 0;
   pages: Array<number>;
+
   private employees$: Array<Employee>;
-  constructor(private employeeService: EmployeeService, private router: Router) {
-  }
+
+  constructor(private employeeService: EmployeeService,
+              private router: Router) {}
 
   ngOnInit() {
     this.reloadDataPaging();
@@ -51,11 +55,12 @@ export class EmployeeListComponent implements OnInit {
   }
 
   employeeDetails(id: number) {
-    this.router.navigate(['details', id]);
+    this.router.navigate(['employeeDetails', id]);
   }
 
-  updateEmployee(id: number) {
-    this.router.navigate(['update', id]);
+  employeeUpdate(id: number) {
+    console.log(id);
+    this.router.navigate(['employeeUpdate', id]);
   }
 
 }

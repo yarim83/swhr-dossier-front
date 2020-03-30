@@ -54,14 +54,17 @@
     <div class="col-sm">
       <h5>Dane kadrowe</h5>
       <div>
-<!--        <label><b>Dział: </b></label> {{employee.department.long_name}}-->
+<!--        <label><b>Dział: </b></label> {{employee..long_name}}-->
       </div>
     </div>
+
+
   </div>
+
+  <button (click)="employeeList()" class="btn btn-outline-primary">Wróć</button>
+  <button (click)="employeeUpdate(employee.id)" class="btn btn-outline-warning" style="margin-left: 10px">Aktualizuj</button>
+
 </div>
 <br>
 <br>
-<button (click)="list()" class="btn btn-outline-primary">Wróć</button>
-<button (click)="update(employee.id)" class="btn btn-outline-warning" style="margin-left: 10px">Aktualizuj</button>
-
 
