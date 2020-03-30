@@ -1,28 +1,28 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h2 class="text-info">Lista pracowników / funkcjonariuszy</h2>
+    <h2 class="text-info">Komórek organizacyjnych</h2>
   </div>
   <div class="panel-body">
     <table class="table">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">Imię</th>
-        <th scope="col">Nazwisko</th>
-        <th scope="col">Email</th>
+        <th scope="col">Skót</th>
+        <th scope="col">Pełna nazwa</th>
+        <th scope="col">Opis</th>
         <th scope="col">Akcja</th>
       </tr>
       </thead>
 
       <tbody>
-      <tr *ngFor="let employee of employees$">
-        <td>{{employee.firstName}}</td>
-        <td>{{employee.lastName}}</td>
-        <td>{{employee.email}}</td>
+      <tr *ngFor="let department of departmentsPaging$">
+        <td>{{department.shortName}}</td>
+        <td>{{department.longName}}</td>
+        <td>{{department.description}}</td>
         <td>
-          <button (click)="employeeDetails(employee.id)" class="btn btn-outline-primary" style="margin-left: 10px">
+          <button (click)="departmentDetails(department.id)" class="btn btn-outline-primary" style="margin-left: 10px">
             Szczegóły
           </button>
-          <button (click)="updateEmployee(employee.id)" class="btn btn-outline-warning" style="margin-left: 10px">
+          <button (click)="departmentUpdate(department.id)" class="btn btn-outline-warning" style="margin-left: 10px">
             Aktualizuj
           </button>
 
@@ -31,11 +31,10 @@
                   [popoverTitle]="'Potwierdzenie usunięcia'"
                   [popoverMessage]="'Czy na pewno?'"
                   placement="left"
-                  (confirm)="deleteEmployee(employee.id) && reloadDataPaging()"
-                  (cancel)="reloadDataPaging()">
+                  (confirm)="departmentDelete(department.id) && reloadData()"
+                  (cancel)="reloadData()">
             Skasuj
           </button>
-
         </td>
       </tr>
       </tbody>
