@@ -19,7 +19,7 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
-    "angular": "^1.7.9",
+    "angular": "^1.8.3",
     "angular-confirmation-popover": "^4.2.2",
     "angular-datetime-input": "^5.3.0",
     "bootstrap": "^4.4.1",
